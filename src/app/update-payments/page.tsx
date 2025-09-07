@@ -16,14 +16,22 @@ export default function UpdatePaymentsPage () {
         <Card>
         <CardHeader>
             <CardTitle>Update Pending Payment</CardTitle>
-            <CardDescription>Pending: 500</CardDescription>
+            <CardDescription>Balance: 500</CardDescription>
         </CardHeader>
         <CardContent>
             <div className="space-y-4">
                 <Label>Phone Number</Label>
                 <Input type="number" readOnly/>
-                <Label>Paid Amount</Label>
+                <Label>Amount</Label>
                 <Input type="number" readOnly/>
+                <Label>Paid</Label>
+                <Input type="number" readOnly/>
+                <Label>New Amount</Label>
+                <Input type="number"/>
+                <Label>Paying</Label>
+                <Input type="number"/>
+                <Label>Note</Label>
+                <Input type="text"/>
             </div>
         </CardContent>
         <CardFooter>
