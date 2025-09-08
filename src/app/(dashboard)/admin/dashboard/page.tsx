@@ -1,3 +1,5 @@
+"use client"
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import CreatePaymentsPage from "../create-payments/page"
 import ReadPayments from "../read-payments/page"
