@@ -1,11 +1,11 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import CreatePaymentsPage from "../create-payments/page"
 import ReadPayments from "../read-payments/page"
+import UpdatePaymentForm from "@/components/UpdatePaymentForm"
 import Navbar from "@/components/Navbar"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
-import UpdatePaymentForm from "@/components/UpdatePaymentForm"
 
 export default function AdminDashboardPage() {
     const [activeTab, setActiveTab] = useState("create-payments-info")

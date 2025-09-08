@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/form"
 
 import { toast } from "sonner"
-import { useCreatePaymentMutation } from "@/app/features/paymentApi"
+import { useCreatePaymentMutation } from "@/features/payments/api"
 
 
  const formSchema = z.object({
@@ -39,7 +39,7 @@ import { useCreatePaymentMutation } from "@/app/features/paymentApi"
 
 export default function CreatePaymentsPage () {
 
-    const [createPayment, {isLoading, isError, isSuccess}] = useCreatePaymentMutation()
+    const [createPayment, {isLoading}] = useCreatePaymentMutation()
     
    const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

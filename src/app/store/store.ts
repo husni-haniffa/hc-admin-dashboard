@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { paymentsApi } from '../features/paymentApi'
+import { paymentsApi } from '@/features/payments/api'
 
 export const store = configureStore({
   reducer: {

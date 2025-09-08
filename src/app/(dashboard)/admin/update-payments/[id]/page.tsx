@@ -26,7 +26,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { toast } from "sonner"
-import { useGetPaymentByIdQuery, useUpdatePaymentMutation } from "@/app/features/paymentApi"
+import { useGetPaymentByIdQuery, useUpdatePaymentMutation } from "@/features/payments/api"
 import Navbar from "@/components/Navbar"
 
 // form validation schema
@@ -274,7 +274,7 @@ export default function UpdatePaymentsPage() {
         </div>
       </CardContent>
     </Card>
-    </div>
-    </div>
+  </div>
+  </div>
   )
 }
