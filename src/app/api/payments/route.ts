@@ -13,24 +13,16 @@ export async function  POST(req: any) {
     }
 }
 
-export async function GET(req: any, { params }: { params: { id: string } }) {
+
+
+export async function GET(req: Request) {
     try {
-        await connectDatabase()
-        const { id } = params;
-        if( id ) {
-            const payment = await Payment.findById(id)
-            if( !payment ) {
-                return NextResponse.json({message: "Payment info not found"}, {status: 404})
-
-            }
-            return NextResponse.json(payment, { status: 200 })  
-        }
-
+        await connectDatabase();
         const payments = await Payment.find({});
-        return NextResponse.json(payments, {status:200})      
+        return NextResponse.json(payments, { status: 200 });
     } catch (error: any) {
-        return NextResponse.json({error: error.message}, {status: 500})
-    }   
+        return NextResponse.json({ error: error.message }, { status: 500 });
+    }
 }
 
 export async function PUT(req: any, { params }: { params: { id: string } }) {
