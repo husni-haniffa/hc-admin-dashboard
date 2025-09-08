@@ -1,1 +1,1 @@
-export type { Payment, CreatePaymentRequest, UpdatePaymentRequest } from './payment.types';
+export type { Payment, CreatePaymentRequest, UpdatePaymentRequest, PaymentFilters } from './payment.types';
