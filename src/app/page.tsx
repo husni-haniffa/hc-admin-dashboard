@@ -42,7 +42,7 @@ export default function Home() {
               </svg>
             </div>
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Access Restricted</h1>
-            <p className="text-gray-600">You don't have permission to access this area</p>
+            <p className="text-gray-600">You don&apos;t have permission to access this area</p>
           </div>
 
           {/* Error Details */}

@@ -25,8 +25,8 @@ export async function connectDatabase () {
         mongoose.connection.on("disconnected", () => {
             console.log("INFO: MongoDB: disconnected");
         });
-    } catch (error) {
-        console.error("ERROR: Failed to connect MongoDB")
-        process.exit
+    } catch (_error) {
+        console.error("ERROR: Failed to connect MongoDB", _error)
+        process.exit(1)
     }
 }

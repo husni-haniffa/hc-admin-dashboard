@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo } from 'react';
 import { useGetPaymentsQuery } from '../api';
 import { filterPayments, sortPaymentsByDate } from '../utils';

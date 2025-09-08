@@ -2,14 +2,15 @@ import { connectDatabase } from "@/server/database";
 import Payment from "@/server/payment-schema"
 import { NextResponse } from "next/server";
 
-export async function  POST(req: any) {
+export async function  POST(req: Request) {
     try {
         await connectDatabase()
         const body = await req.json()
         const payment = await Payment.create(body);
         return NextResponse.json(payment, {status: 201});
-    } catch (error: any) {
-        return NextResponse.json({error: error.message}, {status: 500});
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : "Unknown error";
+        return NextResponse.json({error: message}, {status: 500});
     }
 }
 
@@ -23,7 +24,7 @@ export async function GET(req: Request) {
         const { searchParams } = new URL(req.url);
         const sortParam = searchParams.get('sort');
 
-        let sortOptions: any = {};
+        const sortOptions: Record<string, 1 | -1> = {};
         if (sortParam) {
             // Handle sort parameter like "-createdAt" (descending)
             if (sortParam.startsWith('-')) {
@@ -38,17 +39,21 @@ export async function GET(req: Request) {
 
         const payments = await Payment.find({}).sort(sortOptions);
         return NextResponse.json(payments, { status: 200 });
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : "Unknown error";
+        return NextResponse.json({ error: message }, { status: 500 });
     }
 }
 
-export async function PUT(req: any, { params }: { params: Promise<{ id: string }> }) {
+export async function PUT(req: Request) {
     try {
         await connectDatabase();
         const body = await req.json();
-        const { id } = await params;
-        const { newAmount, paid } = body;
+        const { id, newAmount, paid } = body as {
+            id?: string;
+            newAmount?: number;
+            paid?: number;
+        };
 
         if (!id) {
             return NextResponse.json({ message: "No Id provided" }, { status: 400 });
@@ -66,8 +71,9 @@ export async function PUT(req: any, { params }: { params: Promise<{ id: string }
         }
         await payment.save();
         return NextResponse.json(payment, { status: 200 });
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 })
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : "Unknown error";
+        return NextResponse.json({ error: message }, { status: 500 })
     }
 }
 

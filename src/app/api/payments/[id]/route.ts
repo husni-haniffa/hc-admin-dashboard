@@ -3,27 +3,28 @@ import { NextResponse } from "next/server";
 import Payment from "@/server/payment-schema"
 
 
-export async function GET(req: any, { params }: { params: Promise<{id: string}>}) {
+export async function GET(_req: Request, { params }: { params: { id: string } }) {
     try {
         await connectDatabase()
-        const {id} = await params
+        const {id} = params
         if (!id) {
             return NextResponse.json({ message: "No Id provided" }, { status: 400 });
         }
         const payment = await Payment.findById(id)
         return NextResponse.json(payment, {status: 200})
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 })
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : "Unknown error";
+        return NextResponse.json({ error: message }, { status: 500 })
 
     }
 }
 
-export async function PUT(req: any, { params }: { params: Promise<{ id: string }> }) {
+export async function PUT(req: Request, { params }: { params: { id: string } }) {
     try {
         await connectDatabase();
         const body = await req.json();
         const { paidAmount, note} = body
-        const { id } = await params;
+        const { id } = params;
         if (!id) {
             return NextResponse.json({ message: "No Id provided" }, { status: 400 });
         }
@@ -59,7 +60,8 @@ export async function PUT(req: any, { params }: { params: Promise<{ id: string }
         
         
         return NextResponse.json(payment, { status: 200 });
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 })
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : "Unknown error";
+        return NextResponse.json({ error: message }, { status: 500 })
     }
 }

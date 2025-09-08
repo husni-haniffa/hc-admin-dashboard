@@ -72,7 +72,7 @@ export default function UpdatePaymentForm({ id, onCancel }: UpdatePaymentFormPro
       toast.success("Payment updated successfully!");
       form.reset();
       onCancel(); // Go back to list
-    } catch (error) {
+    } catch {
       toast.error("Failed to update payment");
     }
   }

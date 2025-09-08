@@ -48,7 +48,7 @@ export default function AdminDashboardPage() {
                             <Card className="w-full max-w-2xl mx-auto">
                                 <CardContent className="text-center py-12">
                                     <h2 className="text-2xl font-semibold mb-4">Update Payment</h2>
-                                    <p className="text-gray-600 mb-6">Please select a payment to update from the "View Payments" tab.</p>
+                                    <p className="text-gray-600 mb-6">Please select a payment to update from the &quot;View Payments&quot; tab.</p>
                                     <Button onClick={() => setActiveTab("read-payments-info")}>
                                         Go to View Payments
                                     </Button>

@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -56,9 +55,9 @@ export default function CreatePaymentsPage () {
             toast.success("Payment Created Successfully!")
             console.log("Payment created:", values)
             form.reset()
-        } catch (error) {
+        } catch (_error) {
             toast.error("Failed to Create Payment!")
-            console.log("Payment Failed:", error)
+            console.log("Payment Failed:", _error)
         }
    }
 
