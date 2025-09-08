@@ -63,66 +63,96 @@ export default function CreatePaymentsPage () {
    }
 
     return (
-        <Card>
+        <Card className="w-full max-w-2xl mx-auto">
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                <CardHeader>
-                    <CardTitle className="mb-6">New Pending Payment</CardTitle>
-                </CardHeader>
-                <CardContent>   
-                <div className="space-y-4">
-                    <FormField
-                        control={form.control}
-                        name="phoneNumber"
-                        render={({ field }) => (
-                            <FormItem>
-                            <FormLabel>Phone Number</FormLabel>
-                            <FormControl>
-                                <Input type="number" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="amount"
-                        render={({ field }) => (
-                            <FormItem>
-                            <FormLabel>Amount</FormLabel>
-                            <FormControl>
-                                <Input type="number" {...field} 
-                               onChange={(e) => field.onChange(e.target.valueAsNumber || 0)} />
-                            </FormControl>
-                            <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="note"
-                        render={({ field }) => (
-                            <FormItem>
-                            <FormLabel>Note</FormLabel>
-                            <FormControl>
-                                <Textarea {...field} />
-                            </FormControl>
-                            <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                </div>
-                </CardContent>
-                <CardFooter className="mt-6">
-                    <div className="flex space-x-6">
-                        <Button className="bg-red-600 hover:bg-red-500">Cancel</Button>
-                        <Button 
-                            className="bg-green-600 hover:bg-green-500" 
-                            type="submit">
-                            {isLoading ? "Submitting": "Submit"}
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <CardHeader>
+                        <CardTitle className="text-2xl font-semibold">Create New Payment</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                        <FormField
+                            control={form.control}
+                            name="phoneNumber"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel htmlFor="phoneNumber" className="text-sm font-medium">
+                                        Phone Number *
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            id="phoneNumber"
+                                            type="tel"
+                                            placeholder="Enter 10-digit phone number"
+                                            {...field}
+                                            className="w-full"
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="amount"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel htmlFor="amount" className="text-sm font-medium">
+                                        Amount (₹) *
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            id="amount"
+                                            type="number"
+                                            placeholder="Enter amount"
+                                            min="100"
+                                            max="999999"
+                                            {...field}
+                                            onChange={(e) => field.onChange(e.target.valueAsNumber || 0)}
+                                            className="w-full"
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="note"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel htmlFor="note" className="text-sm font-medium">
+                                        Note
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Textarea
+                                            id="note"
+                                            placeholder="Add any additional notes..."
+                                            className="min-h-[100px] resize-none"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </CardContent>
+                    <CardFooter className="flex flex-col sm:flex-row gap-4 pt-6">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            className="w-full sm:w-auto"
+                            onClick={() => form.reset()}
+                        >
+                            Clear Form
                         </Button>
-                    </div>
-                </CardFooter>
+                        <Button
+                            type="submit"
+                            className="w-full sm:w-auto bg-green-600 hover:bg-green-700"
+                            disabled={isLoading}
+                        >
+                            {isLoading ? "Creating Payment..." : "Create Payment"}
+                        </Button>
+                    </CardFooter>
                 </form>
             </Form>
         </Card>

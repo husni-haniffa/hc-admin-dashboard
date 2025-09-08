@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useUser, useClerk } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
@@ -11,6 +11,7 @@ const SignInPage = dynamic(() => import("./sign-in/page"), { ssr: false });
 
 export default function Home() {
   const { isLoaded, isSignedIn, user } = useUser();
+  const { signOut } = useClerk();
   const router = useRouter();
 
   if (!isLoaded) {
@@ -29,11 +30,16 @@ export default function Home() {
   }
 
   return (
-    <div className="p-4">
-      <p className="mb-4 text-red-500">Unauthorized: only admins can view this page.</p>
-      <Button onClick={() => router.push("/sign-in")}>
-        Go to Sign In
-      </Button>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="text-center">
+        <p className="mb-4 text-red-500 text-lg">Unauthorized: only admins can view this page.</p>
+        <Button onClick={() => {
+          signOut();
+          router.push("/sign-in");
+        }}>
+          Go to Sign In
+        </Button>
+      </div>
     </div>
   );
 }
