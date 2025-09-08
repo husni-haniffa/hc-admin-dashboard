@@ -32,26 +32,30 @@ export async function PUT(req: any, { params }: { params: { id: string } }) {
         if (!payment) {
             return NextResponse.json({ message: "Payment info not found" }, { status: 400 });
         }
-        if (payment.paid === 0) {
-            payment.paid = paidAmount
-            payment.balance = payment.amount - payment.paid
 
-            if(payment.paid === 0) {
-                payment.paymentStatus = "Pending"
-            } else if (payment.paid < payment.amount){
-                payment.paymentStatus = "Partial"
-            }else {
-                payment.paymentStatus = "Paid"
-            }
-            
-            if(payment.note === "") {
-                payment.note = note
-            }else{
-                payment.note = payment.note + "|" + note
-            }
+        // Accumulate paid amount
+        payment.paid += paidAmount;
+        payment.balance = payment.amount - payment.paid;
 
-            await payment.save();
+        // Update status based on balance
+        if (payment.balance === 0) {
+            payment.paymentStatus = "Paid";
+        } else if (payment.paid > 0 && payment.balance > 0) {
+            payment.paymentStatus = "Partial";
+        } else {
+            payment.paymentStatus = "Unpaid";
         }
+
+        // Append note if provided
+        if (note && note.trim() !== "") {
+            if (payment.note && payment.note.trim() !== "") {
+                payment.note += " | " + note;
+            } else {
+                payment.note = note;
+            }
+        }
+
+        await payment.save();
         
         
         return NextResponse.json(payment, { status: 200 });

@@ -1,8 +1,8 @@
 export interface Payment {
     _id: string
     phoneNumber: string
-    amount: string,
-    note?: String,
+    amount: number,
+    note?: string,
     paid: number
     balance: number
     paymentStatus: string
