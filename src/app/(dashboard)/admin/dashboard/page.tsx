@@ -2,7 +2,7 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import CreatePaymentsPage from "../create-payments/page"
-import ReadPayments from "../read-payments/page"
+import ReadPayments from "@/components/ReadPayments"
 import UpdatePaymentForm from "@/components/UpdatePaymentForm"
 import Navbar from "@/components/Navbar"
 import { Card, CardContent } from "@/components/ui/card"
