@@ -3,10 +3,11 @@ import { NextResponse } from "next/server";
 import Payment from "@/server/payment-schema"
 
 
-export async function GET(_req: Request, { params }: { params: { id: string } }) {
+export async function GET(_req: Request, context: unknown) {
     try {
         await connectDatabase()
-        const {id} = params
+        const { params } = (context as { params?: { id?: string } }) ?? {};
+        const id = params?.id as string | undefined;
         if (!id) {
             return NextResponse.json({ message: "No Id provided" }, { status: 400 });
         }
@@ -19,12 +20,13 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
     }
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, context: unknown) {
     try {
         await connectDatabase();
         const body = await req.json();
         const { paidAmount, note} = body
-        const { id } = params;
+        const { params } = (context as { params?: { id?: string } }) ?? {};
+        const id = params?.id as string | undefined;
         if (!id) {
             return NextResponse.json({ message: "No Id provided" }, { status: 400 });
         }
