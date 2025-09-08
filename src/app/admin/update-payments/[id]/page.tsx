@@ -126,7 +126,7 @@ export default function UpdatePaymentsPage() {
       <CardContent>
         <div className="space-y-6">
           {/* Read-only fields */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
             <div>
               <Label htmlFor="phoneNumber" className="text-sm font-medium text-gray-700">
                 Phone Number
@@ -171,6 +171,30 @@ export default function UpdatePaymentsPage() {
                 id="balance"
                 type="number"
                 value={payment?.balance}
+                readOnly
+                className="mt-1 bg-white"
+              />
+            </div>
+            <div>
+              <Label htmlFor="createdAt" className="text-sm font-medium text-gray-700">
+                Created At
+              </Label>
+              <Input
+                id="createdAt"
+                type="text"
+                value={payment?.createdAt ? new Date(payment.createdAt).toLocaleString() : 'N/A'}
+                readOnly
+                className="mt-1 bg-white"
+              />
+            </div>
+            <div>
+              <Label htmlFor="updatedAt" className="text-sm font-medium text-gray-700">
+                Updated At
+              </Label>
+              <Input
+                id="updatedAt"
+                type="text"
+                value={payment?.updatedAt ? new Date(payment.updatedAt).toLocaleString() : 'N/A'}
                 readOnly
                 className="mt-1 bg-white"
               />

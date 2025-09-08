@@ -88,7 +88,7 @@ export default function ReadPayments({ onUpdate }: ReadPaymentsProps = {}) {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
                   <div>
                     <p className="text-gray-600">Amount</p>
                     <p className="font-semibold">₹{payment.amount}</p>
@@ -104,6 +104,18 @@ export default function ReadPayments({ onUpdate }: ReadPaymentsProps = {}) {
                   <div>
                     <p className="text-gray-600">Status</p>
                     <p className="font-semibold">{payment.paymentStatus}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600">Created</p>
+                    <p className="font-semibold text-xs">
+                      {payment.createdAt ? new Date(payment.createdAt).toLocaleString() : 'N/A'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600">Updated</p>
+                    <p className="font-semibold text-xs">
+                      {payment.updatedAt ? new Date(payment.updatedAt).toLocaleString() : 'N/A'}
+                    </p>
                   </div>
                 </div>
                 {payment.note && (

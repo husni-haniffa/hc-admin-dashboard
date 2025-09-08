@@ -53,11 +53,11 @@ export default function CreatePaymentsPage () {
    async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
             await createPayment(values).unwrap()
-            toast("Success: Payment Created!")
+            toast.success("Payment Created Successfully!")
             console.log("Payment created:", values)
             form.reset()
         } catch (error) {
-            toast("Error: Payment Failed!")
+            toast.error("Failed to Create Payment!")
             console.log("Payment Failed:", error)
         }
    }
