@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { useParams } from "next/navigation"
-import { useGetPaymentByIdQuery, useUpdatePaymentMutation } from "../../features/paymentApi"
+
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -26,6 +26,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { toast } from "sonner"
+import { useGetPaymentByIdQuery, useUpdatePaymentMutation } from "@/app/features/paymentApi"
 
 // form validation schema
 const formSchema = z.object({

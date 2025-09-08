@@ -3,9 +3,9 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { useGetPaymentsQuery } from "../features/paymentApi";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useGetPaymentsQuery } from "@/app/features/paymentApi";
 
 
 export default function ReadPayments() {

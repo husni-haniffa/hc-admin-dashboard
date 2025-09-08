@@ -5,7 +5,7 @@ import ReadPayments from "../read-payments/page"
 
 export default function AdminDashboardPage() {
     return (
-        <div className="flex justify-center items-center min-h-screen p-6">
+        <div className="mx-auto p-6 flex justify-center items-center min-h-screen">
             <Tabs defaultValue="create-payments-info" className="w-[400px]">
             <TabsList>
                 <TabsTrigger value="create-payments-info">Create</TabsTrigger>
