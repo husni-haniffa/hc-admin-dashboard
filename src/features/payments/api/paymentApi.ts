@@ -9,7 +9,7 @@ export const paymentsApi = createApi({
     endpoints: (builder) => ({
         // Fetch all payments
         getPayments: builder.query<Payment[], void>({
-            query: () => '/payments',
+            query: () => '/payments?sort=-createdAt', // Sort by newest first
             providesTags: (result = []) => [
                 ...result.map(({ _id }) => ({ type: 'Payment' as const, id: _id })),
                 { type: 'Payment' as const, id: 'LIST' },

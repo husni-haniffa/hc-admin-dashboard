@@ -18,18 +18,36 @@ export async function  POST(req: any) {
 export async function GET(req: Request) {
     try {
         await connectDatabase();
-        const payments = await Payment.find({});
+
+        // Parse query parameters
+        const { searchParams } = new URL(req.url);
+        const sortParam = searchParams.get('sort');
+
+        let sortOptions: any = {};
+        if (sortParam) {
+            // Handle sort parameter like "-createdAt" (descending)
+            if (sortParam.startsWith('-')) {
+                sortOptions[sortParam.substring(1)] = -1; // Descending
+            } else {
+                sortOptions[sortParam] = 1; // Ascending
+            }
+        } else {
+            // Default sort by newest first
+            sortOptions.createdAt = -1;
+        }
+
+        const payments = await Payment.find({}).sort(sortOptions);
         return NextResponse.json(payments, { status: 200 });
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
 
-export async function PUT(req: any, { params }: { params: { id: string } }) {
+export async function PUT(req: any, { params }: { params: Promise<{ id: string }> }) {
     try {
         await connectDatabase();
         const body = await req.json();
-        const { id } = params;
+        const { id } = await params;
         const { newAmount, paid } = body;
 
         if (!id) {

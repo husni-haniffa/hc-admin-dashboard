@@ -39,7 +39,7 @@ import { useCreatePaymentMutation } from "@/features/payments/api"
 
 export default function CreatePaymentsPage () {
 
-    const [createPayment, {isLoading, isError, isSuccess}] = useCreatePaymentMutation()
+    const [createPayment, {isLoading}] = useCreatePaymentMutation()
     
    const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
