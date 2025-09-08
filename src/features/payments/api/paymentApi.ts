@@ -1,4 +1,4 @@
-import { CreatePaymentRequest, Payment, UpdatePaymentRequest } from '@/lib/types'
+import { CreatePaymentRequest, Payment, UpdatePaymentRequest } from '../types'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 

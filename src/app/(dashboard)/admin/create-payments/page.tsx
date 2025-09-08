@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/form"
 
 import { toast } from "sonner"
-import { useCreatePaymentMutation } from "@/app/features/paymentApi"
+import { useCreatePaymentMutation } from "@/features/payments/api"
 
 
  const formSchema = z.object({

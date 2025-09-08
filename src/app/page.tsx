@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 
 // Dynamically import AdminDashboardPage as a Client Component wrapper
-const AdminDashboardPage = dynamic(() => import("./admin/dashboard/page"), { ssr: false });
-const SignInPage = dynamic(() => import("./sign-in/page"), { ssr: false });
+const AdminDashboardPage = dynamic(() => import("./(dashboard)/admin/dashboard/page"), { ssr: false });
+const SignInPage = dynamic(() => import("./(auth)/sign-in/page"), { ssr: false });
 
 export default function Home() {
   const { isLoaded, isSignedIn, user } = useUser();

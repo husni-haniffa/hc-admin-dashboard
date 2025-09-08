@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
-import { useGetPaymentsQuery } from "@/app/features/paymentApi";
+import { useGetPaymentsQuery } from "@/features/payments/api";
 import { useState, useMemo } from "react";
 
 interface ReadPaymentsProps {
